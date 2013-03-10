@@ -3,6 +3,7 @@
 namespace SecurityMultiTool\Crypt;
 
 use SecurityMultiTool\Exception;
+use SecurityLib\Strength;
 
 class Random
 {
