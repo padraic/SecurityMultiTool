@@ -1,6 +1,6 @@
 <?php
 
-namespace SecurityMultiTool;
+namespace SecurityMultiTool\Html;
 
 use SecurityMultiTool\Exception;
 
