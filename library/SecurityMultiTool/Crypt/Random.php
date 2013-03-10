@@ -42,9 +42,6 @@ class Random
                 return $result;
             }
         }
-        /**
-         * OpenBSD PRNG alt. to urandom
-         */
         if (file_exists('/dev/arandom') && is_readable('/dev/arandom')) {
             $file = fopen('/dev/arandom', 'rb');
             if ($file) {
