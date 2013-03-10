@@ -1,0 +1,22 @@
+{
+    "name": "padraic/SecurityMultiTool",
+    "description": "SecurityMultiTool Description",
+    "keywords": ["library", "security", "escaping", "sanitisation", "sanitization", "csrf", "xss", "ssl/tls", "PRNG", "RNG"],
+    "homepage": "http://github.com/padraic/SecurityMultiTool",
+    "license": "BSD-3-Clause",
+    "minimum-stability": "dev",
+    "authors": [
+        {
+            "name": "Pádraic Brady",
+            "email": "padraic.brady@gmail.com",
+            "homepage": "http://blog.astrumfutura.com"
+        }
+    ],
+    "require": {
+        "ezyang/htmlpurifier": ">=4.5.0",
+        "ircmaxell/random-lib": "dev-master"
+    },
+    "autoload": {
+        "psr-0": { "SecurityMultiTool": "library/" }
+    }
+}
