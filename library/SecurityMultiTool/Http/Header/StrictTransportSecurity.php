@@ -54,6 +54,11 @@ class StrictTransportSecurity extends AbstractHeader implements HeaderInterface
         }
     }
 
+    public function __toString()
+    {
+        return $this->getHeader();
+    }
+
     protected function isHttpsRequest()
     {
         $https = null;

@@ -2,32 +2,31 @@
 
 namespace SecurityMultiTool\Http\Header;
 
+use SecurityMultiTool\Common;
 use SecurityMultiTool\Exception;
 
-abstract class AbstractHeader
+abstract class AbstractHeader extends Common\AbstractOptions
 {
 
-    protected $options = array();
-
-    public function __construct(array $options = null)
+    protected function isHttpsRequest()
     {
-        if (!is_null($options)) {
-            $this->setOptions($options);
+        $https = null;
+        if (isset($_SERVER['HTTPS'])) {
+            $https = strtolower($_SERVER['HTTPS']); 
+            if ($https == 'on' || $https == '1') {
+                return true;
+            }
         }
-    }
-
-    public function setOptions(array $options)
-    {
-        foreach ($options as $key => $value) {
-            $this->setOption($key, $value);
+        if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+            $https = strtolower($_SERVER['HTTP_X_FORWARDED_PROTO']); 
+            if ($https == 'https') {
+                return true;
+            }
         }
-    }
-
-    public function getOption($key)
-    {
-        if (isset($this->options[$key])) {
-            return $this->options[$key];
+        if (isset($_SERVER['SERVER_PORT']) && $_SERVER['SERVER_PORT'] == '443') {
+            return true;
         }
+        return false;
     }
 
 }

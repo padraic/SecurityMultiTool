@@ -2,17 +2,15 @@
 
 namespace SecurityMultiTool\Http\Header;
 
-interface HeaderInterface
+use SecurityMultiTool\Common;
+
+interface HeaderInterface extends Common\OptionsInterface
 {
 
     public function getHeader();
 
     public function send($replace = false);
 
-    public function setOptions(array $options);
-
-    public function setOption($key, $value);
-
-    public function getOption($key);
+    public function __toString();
 
 }
