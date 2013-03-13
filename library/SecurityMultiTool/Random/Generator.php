@@ -19,7 +19,8 @@ class Generator
             if (true === $usable) {
                 return $bytes;
             }
-        } elseif (function_exists('mcrypt_create_iv')) {
+        }
+        if (function_exists('mcrypt_create_iv')) {
             if (strtoupper(substr(PHP_OS, 0, 3)) !== 'WIN'
             || version_compare(PHP_VERSION, '5.3.7') >= 0) {
                 $bytes = mcrypt_create_iv($length, MCRYPT_DEV_URANDOM);
