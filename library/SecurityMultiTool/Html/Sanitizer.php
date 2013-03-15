@@ -31,7 +31,7 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
         parent::__construct($options);
     }
 
-    public function sanitize($html, $filter = '')
+    public function sanitize($html, $filter = null)
     {
         if (!isset($this->purifier)) {
             $this->purifier = new \HTMLPurifier($this->getConfig());
