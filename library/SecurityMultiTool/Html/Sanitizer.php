@@ -3,7 +3,7 @@
 namespace SecurityMultiTool\Html;
 
 use SecurityMultiTool\Exception;
-use SecurityMultiTool\Common
+use SecurityMultiTool\Common;
 
 class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterface
 {
