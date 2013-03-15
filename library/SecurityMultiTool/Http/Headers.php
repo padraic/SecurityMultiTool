@@ -25,14 +25,24 @@ class Headers implements \Countable
         }
     }
 
-    public function setOption($key, $value)
+    public function setOption($key, $options)
     {
         switch ($key) {
             case 'strict_transport_security':
             case 'sts':
                 try {
                     $this->headers['strict_transport_security']
-                        = new Header\StrictTransportSecurity($value);
+                        = new Header\StrictTransportSecurity($options);
+                } catch (\Exception $e) {
+                    throw $e;
+                }
+                break;
+
+            case 'csrf_token':
+            case 'csrf':
+                try {
+                    $this->headers['x_csrftoken']
+                        = new Header\CsrfToken($options);
                 } catch (\Exception $e) {
                     throw $e;
                 }
