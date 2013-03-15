@@ -20,6 +20,7 @@ class Parser extends Common\AbstractOptions implements Common\OptionsInterface
     {
         $this->sanitizer = new Sanitizer($cachePath, $options);
         $this->sanitizer->setOption('HTML.Allowed', $this->filter);
+        $this->parser = new MarkdownParser;
     }
 
     public function parse($markdown, $filter = null)
