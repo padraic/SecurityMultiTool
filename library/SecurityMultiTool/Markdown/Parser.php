@@ -5,8 +5,9 @@ namespace SecurityMultiTool\Markdown;
 use dflydev\markdown\MarkdownParser;
 use SecurityMultiTool\Html\Sanitizer;
 use SecurityMultiTool\Exception;
+use SecurityMultiTool\Common;
 
-class Parser
+class Parser extends Common\AbstractOptions implements Common\OptionsInterface
 {
 
     protected $parser = null;
