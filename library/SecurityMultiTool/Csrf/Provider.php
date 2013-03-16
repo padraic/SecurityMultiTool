@@ -12,11 +12,11 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
 
     protected $token = '';
 
-    protected $tokenNamePrefix = 'CSRFToken';
-
-    protected $name = '';
-
-    protected $timeout = 3600;
+    protected $options = array(
+        'token_name_prefix' => 'CSRFToken',
+        'name' => '',
+        'timeout' => 3600
+    )
 
     public function __construct(array $options = null)
     {
@@ -36,17 +36,23 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
 
     public function getTokenName()
     {
-        return implode(':', array($this->tokenNamePrefix, $this->name));
+        return implode(
+            ':',
+            array(
+                $this->getOption('token_name_prefix'),
+                $this->getOption('name')
+            )
+        );
     }
 
     public function getName()
     {
-        return $this->name;
+        return $this->getOption('name');
     }
 
     public function getTimeout()
     {
-        return $timeout;
+        return $this->getOption('timeout');
     }
 
     public function isValid($token, $tokenName = null)
@@ -108,15 +114,15 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
     {
         switch ($key) {
             case 'timeout':
-                $this->timeout = (int) $value;
+                $this->options['timeout'] = (int) $value;
                 break;
 
             case 'name':
-                $this->name = (string) $value;
+                $this->options['name'] = (string) $value;
                 break;
 
             case 'token_name_prefix':
-                $this->tokenNamePrefix = (string) $value;
+                $this->options['token_name_prefix'] = (string) $value;
                 break;
             
             default:
