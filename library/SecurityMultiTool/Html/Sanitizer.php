@@ -33,25 +33,29 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
 
     public function sanitize($html, $filter = null)
     {
-        if (!isset($this->purifier)) {
-            $this->setHtmlPurifier(new \HTMLPurifier($this->getConfig()));
-        }
-        return $this->purifier->purify($html, $filter);
+        return $this->getHtmlPurifier()->purify($html, $filter);
     }
 
     public function reset()
     {
-        unset($this->purifier);
+        $this->purifier = null;
     }
 
     public function setOption($key, $value)
     {
+        $this->reset();
         $this->getConfig()->set($key, $value);
     }
 
     public function getOption($key)
     {
         return $this->getConfig()->get($key);
+    }
+
+    public function setConfig(\HTMLPurifier_Config $config)
+    {
+        $this->reset();
+        $this->config = $config;
     }
 
     public function getConfig()
@@ -62,6 +66,14 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
     public function setHtmlPurifier(\HtmlPurifier $purifier)
     {
         $this->purifier = $purifier;
+    }
+
+    public function getHtmlPurifier()
+    {
+        if (!isset($this->purifier)) {
+            $this->setHtmlPurifier(new \HTMLPurifier($this->getConfig()));
+        }
+        return $this->purifier;
     }
 
 }

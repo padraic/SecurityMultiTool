@@ -20,26 +20,64 @@
  */
 
 use SecurityMultiTool\Html\Sanitizer;
+use Mockery as M;
 
 class SanitizerTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $cache = '';
 
+    protected $sanitizer = null;
+
     public function setup()
     {
         $this->cache = sys_get_temp_dir();
-    }
-
-    public function testSanitizerCanBeCreatedWithoutIncident()
-    {
-        $sanitizer = new Sanitizer($this->cache);
+        $this->sanitizer = new Sanitizer($this->cache);
     }
 
     public function testSanitizerCreationThrowsExceptionIfCacheDirectoryNotExists()
     {
         $this->setExpectedException('\SecurityMultiTool\Exception\RuntimeException');
         $sanitizer = new Sanitizer('/does/not/exist');
+    }
+
+    public function testSanitizerCreationCreatesHtmlPurifierConfig()
+    {
+        $this->assertTrue($this->sanitizer->getConfig() instanceof \HtmlPurifier_Config);
+    }
+
+    public function testOptionGetterRetrievesCachePath()
+    {
+        $this->assertEquals($this->cache, $this->sanitizer->getOption('Cache.SerializerPath'));
+    }
+
+    public function testCanResetHtmlPurifierTpNewInstance()
+    {
+        $purifier1 = $this->sanitizer->getHtmlPurifier();
+        $this->sanitizer->reset();
+        $purifier2 = $this->sanitizer->getHtmlPurifier();
+        $this->assertNotEquals(
+            spl_object_hash($purifier1),
+            spl_object_hash($purifier2)
+        );
+    }
+
+    public function testSanitizeMethodCallsHtmlPurifier()
+    {
+        $purifier = M::mock('HTMLPurifier');
+        $purifier->shouldReceive('purify')->once()->with('html', null);
+        $this->sanitizer->setHtmlPurifier($purifier);
+        $this->sanitizer->sanitize('html');
+    }
+
+    public function testOptionsMapToHtmlPurifierConfigObject()
+    {
+        $config = M::mock('HTMLPurifier_Config');
+        $config->shouldReceive('set')->once()->with('foo', 'bar');
+        $config->shouldReceive('get')->once()->with('foo')->andReturn('baz');
+        $this->sanitizer->setConfig($config);
+        $this->sanitizer->setOption('foo', 'bar');
+        $this->assertEquals('baz', $this->sanitizer->getOption('foo'));
     }
 
 }
