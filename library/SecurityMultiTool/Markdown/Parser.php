@@ -7,7 +7,7 @@ use SecurityMultiTool\Html\Sanitizer;
 use SecurityMultiTool\Exception;
 use SecurityMultiTool\Common;
 
-class Parser extends Common\AbstractOptions implements Common\OptionsInterface
+class Parser implements Common\OptionsInterface
 {
 
     protected $parser = null;
@@ -19,7 +19,7 @@ class Parser extends Common\AbstractOptions implements Common\OptionsInterface
     public function __construct($cachePath, array $options = null)
     {
         $this->sanitizer = new Sanitizer($cachePath, $options);
-        $this->sanitizer->setOption('HTML.Allowed', $this->filter);
+        //$this->sanitizer->setOption('HTML.Allowed', $this->filter);
         $this->parser = new MarkdownParser;
     }
 
@@ -45,6 +45,13 @@ class Parser extends Common\AbstractOptions implements Common\OptionsInterface
     public function getFilterDefinition()
     {
         return $this->filter;
+    }
+
+    public function setOptions(array $options)
+    {
+        foreach ($options as $key => $value) {
+            $this->setOption($key, $value);
+        }
     }
 
     public function setOption($key, $value)

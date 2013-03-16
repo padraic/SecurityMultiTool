@@ -63,7 +63,7 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
         try {
             $array = $this->retrieveTokenFromSession($tokenName);
         } catch (Exception\RuntimeException $e) {
-            return false;
+            return false; //TODO: Set lastException for debug recall
         }
         if (empty($array) || !is_array($array) || !isset($array['token'])
         || !isset($array['expire'])) {

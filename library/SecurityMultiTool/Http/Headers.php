@@ -3,8 +3,10 @@
 namespace SecurityMultiTool\Http;
 
 use SecurityMultiTool\Http\Header;
+use SecurityMultiTool\Common;
+use SecurityMultiTool\Exception;
 
-class Headers implements \Countable
+class Headers implements \Countable, Common\OptionsInterface
 {
 
     protected $options = array();
