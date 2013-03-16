@@ -7,8 +7,6 @@ use SecurityMultiTool\Exception;
 class CsrfToken extends AbstractHeader implements HeaderInterface
 {
 
-    protected $options = array();
-
     public function getHeader()
     {
         $header = 'X-CSRFToken: ' . $this->getOption('token');
