@@ -18,6 +18,9 @@
         "ircmaxell/security-lib": "dev-master@dev",
         "dflydev/markdown": ">=1.0.2"
     },
+    "require-dev": {
+        "mockery/mockery": "dev-master@dev"
+    },
     "autoload": {
         "psr-0": { "SecurityMultiTool": "library/" }
     }
