@@ -14,7 +14,7 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
 
     public function __construct($cachePath, array $options = null)
     {
-        if (!isset($cachePath) || !is_dir($cachePath || !is_writable($cachePath))) {
+        if (!isset($cachePath) || !is_dir($cachePath) || !is_writable($cachePath)) {
             throw new Exception\RuntimeException(
                 'The HTMLPurifier HTML Sanitiser requires a cache location to '
                 . 'improve performance. Please set a cache path or set the '
@@ -34,7 +34,7 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
     public function sanitize($html, $filter = null)
     {
         if (!isset($this->purifier)) {
-            $this->purifier = new \HTMLPurifier($this->getConfig());
+            $this->setHtmlPurifier(new \HTMLPurifier($this->getConfig()));
         }
         return $this->purifier->purify($html, $filter);
     }
@@ -57,6 +57,11 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
     public function getConfig()
     {
         return $this->config;
+    }
+
+    public function setHtmlPurifier(\HtmlPurifier $purifier)
+    {
+        $this->purifier = $purifier;
     }
 
 }
