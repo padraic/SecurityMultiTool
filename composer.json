@@ -1,7 +1,7 @@
 {
     "name": "padraic/security-multitool",
     "description": "SecurityMultiTool Description",
-    "keywords": ["library", "security", "escaping", "sanitisation", "sanitization", "csrf", "xss", "ssl/tls", "PRNG", "RNG"],
+    "keywords": ["library", "security", "escaping", "sanitisation", "sanitization", "csrf", "xss", "ssl", "tls", "PRNG", "RNG", "random", "htmlpurifier"],
     "homepage": "http://github.com/padraic/SecurityMultiTool",
     "license": "BSD-3-Clause",
     "minimum-stability": "stable",
