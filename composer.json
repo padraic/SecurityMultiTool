@@ -1,5 +1,5 @@
 {
-    "name": "padraic/SecurityMultiTool",
+    "name": "padraic/security-multi-tool",
     "description": "SecurityMultiTool Description",
     "keywords": ["library", "security", "escaping", "sanitisation", "sanitization", "csrf", "xss", "ssl/tls", "PRNG", "RNG"],
     "homepage": "http://github.com/padraic/SecurityMultiTool",
