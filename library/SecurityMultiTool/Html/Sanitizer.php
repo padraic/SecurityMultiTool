@@ -14,7 +14,8 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
 
     public function __construct($cachePath, array $options = null)
     {
-        if (!isset($cachePath) || !is_dir($cachePath) || !is_writable($cachePath)) {
+        if ((!isset($cachePath) || !is_dir($cachePath) || !is_writable($cachePath))
+        && false !== $cachePath) {
             throw new Exception\RuntimeException(
                 'The HTMLPurifier HTML Sanitiser requires a cache location to '
                 . 'improve performance. Please set a cache path or set the '
@@ -24,7 +25,7 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
         }
         $this->config = \HTMLPurifier_Config::createDefault();
         if (false === $cachePath) {
-            $this->getConfig()->set('Core.DefinitionCache', null);
+            $this->getConfig()->set('Cache.DefinitionImpl', null);
         } else {
             $this->getConfig()->set('Cache.SerializerPath', rtrim($cachePath, '\\/ '));
         }

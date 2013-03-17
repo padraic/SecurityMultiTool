@@ -73,11 +73,11 @@ class HashTiming implements RandomLib\Source
                 $t2 = microtime(true);
                 $entropy .= $t1 . $t2;
             }
-            $divisor = (int) (($t2 - $t1) * 1000000));
+            $divisor = (int) (($t2 - $t1) * 1000000);
             if ($divisor == 0) {
                 $divisor = 400;
             }
-            $rounds = (int) ($msec_per_round * 50 / $divisor;
+            $rounds = (int) ($msec_per_round * 50 / $divisor);
             $iter = $bytes * (int) (ceil(8 / $bits_per_round));
             for ($i = 0; $i < $iter; $i ++)
             {

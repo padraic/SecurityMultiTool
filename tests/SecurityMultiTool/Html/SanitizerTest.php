@@ -51,10 +51,39 @@ class SanitizerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($this->cache, $this->sanitizer->getOption('Cache.SerializerPath'));
     }
 
-    public function testCanResetHtmlPurifierTpNewInstance()
+    public function testCacheDisabledWhenPassingFalseAsCachePath()
+    {
+        $sanitizer = new Sanitizer(false);
+        $this->assertEquals(null, $sanitizer->getOption('Cache.DefinitionImpl'));
+    }
+
+    public function testCanResetHtmlPurifierToNewInstance()
     {
         $purifier1 = $this->sanitizer->getHtmlPurifier();
         $this->sanitizer->reset();
+        $purifier2 = $this->sanitizer->getHtmlPurifier();
+        $this->assertNotEquals(
+            spl_object_hash($purifier1),
+            spl_object_hash($purifier2)
+        );
+    }
+
+    public function testSettingNewConfigWillResetHtmlPurifier()
+    {
+        $config = \HTMLPurifier_Config::createDefault();
+        $purifier1 = $this->sanitizer->getHtmlPurifier();
+        $this->sanitizer->setConfig($config);
+        $purifier2 = $this->sanitizer->getHtmlPurifier();
+        $this->assertNotEquals(
+            spl_object_hash($purifier1),
+            spl_object_hash($purifier2)
+        );
+    }
+
+    public function testSettingNewOptionValueWillResetHtmlPurifier()
+    {
+        $purifier1 = $this->sanitizer->getHtmlPurifier();
+        $this->sanitizer->setOption('Cache.DefinitionImpl', null);
         $purifier2 = $this->sanitizer->getHtmlPurifier();
         $this->assertNotEquals(
             spl_object_hash($purifier1),
@@ -74,10 +103,20 @@ class SanitizerTest extends \PHPUnit_Framework_TestCase
     {
         $config = M::mock('HTMLPurifier_Config');
         $config->shouldReceive('set')->once()->with('foo', 'bar');
+        $config->shouldReceive('set')->once()->with('foo1', 'bar1');
+        $config->shouldReceive('set')->once()->with('foo2', 'bar2');
         $config->shouldReceive('get')->once()->with('foo')->andReturn('baz');
+        $config->shouldReceive('get')->once()->with('foo1')->andReturn('baz1');
+        $config->shouldReceive('get')->once()->with('foo2')->andReturn('baz2');
         $this->sanitizer->setConfig($config);
         $this->sanitizer->setOption('foo', 'bar');
+        $this->sanitizer->setOptions(array(
+            'foo1' => 'bar1',
+            'foo2' => 'bar2'
+        ));
         $this->assertEquals('baz', $this->sanitizer->getOption('foo'));
+        $this->assertEquals('baz1', $this->sanitizer->getOption('foo1'));
+        $this->assertEquals('baz2', $this->sanitizer->getOption('foo2'));
     }
 
 }
