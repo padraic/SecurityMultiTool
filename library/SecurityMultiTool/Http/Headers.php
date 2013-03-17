@@ -20,51 +20,6 @@ class Headers implements \Countable, Common\OptionsInterface
         }
     }
 
-    public function setOptions(array $options)
-    {
-        foreach ($options as $key => $value) {
-            $this->setOption($key, $value);
-        }
-    }
-
-    public function setOption($key, $options)
-    {
-        switch ($key) {
-            case 'strict_transport_security':
-            case 'sts':
-                try {
-                    $this->headers['strict_transport_security']
-                        = new Header\StrictTransportSecurity($options);
-                } catch (\Exception $e) {
-                    throw $e;
-                }
-                break;
-
-            case 'csrf_token':
-            case 'csrf':
-                try {
-                    $this->headers['x_csrftoken']
-                        = new Header\CsrfToken($options);
-                } catch (\Exception $e) {
-                    throw $e;
-                }
-                break;
-            
-            default:
-                throw new Exception\InvalidArgumentException(
-                    'Header type not recognised in options: ' . $key
-                );
-                break;
-        }
-    }
-
-    public function getOption($key)
-    {
-        if (isset($this->options[$key])) {
-            return $this->options[$key];
-        }
-    }
-
     public function send($replace = false)
     {
         ksort($this->headers, \SORT_STRING);
@@ -106,6 +61,96 @@ class Headers implements \Countable, Common\OptionsInterface
     public function count()
     {
         return count($this->headers);
+    }
+
+    public function setOptions(array $options)
+    {
+        foreach ($options as $key => $value) {
+            $this->setOption($key, $value);
+        }
+    }
+
+    public function setOption($key, $options)
+    {
+        switch ($key) {
+            case 'strict_transport_security':
+            case 'sts':
+                try {
+                    if (!isset($this->headers['strict_transport_security'])) {
+                        $this->headers['strict_transport_security']
+                            = new Header\StrictTransportSecurity($options);
+                    } else {
+                        foreach ($options as $key => $value) {
+                            $this->headers['strict_transport_security']
+                                ->setOption($key, $value);
+                        }
+                    }
+                } catch (\Exception $e) {
+                    throw $e;
+                }
+                break;
+
+            case 'csrf_token':
+            case 'csrf':
+                try {
+                    if (!isset($this->headers['csrf_token'])) {
+                        $this->headers['csrf_token']
+                            = new Header\CsrfToken($options);
+                    } else {
+                        foreach ($options as $key => $value) {
+                            $this->headers['csrf_token']
+                                ->setOption($key, $value);
+                        }
+                    }
+                } catch (\Exception $e) {
+                    throw $e;
+                }
+                break;
+            
+            default:
+                throw new Exception\InvalidArgumentException(
+                    'Header type not recognised in options: ' . $key
+                );
+                break;
+        }
+    }
+
+    public function getOption($key)
+    {
+        switch ($key) {
+            case 'strict_transport_security':
+            case 'sts':
+                return $this->headers['strict_transport_security']->getOptions();
+                break;
+
+            case 'csrf_token':
+            case 'csrf':
+                return $this->headers['csrf_token']->getOptions();
+                break;
+            
+            default:
+                return null;
+                break;
+        }
+    }
+
+    public function getOptions()
+    {
+        $return = array();
+        ksort($this->headers, \SORT_STRING);
+        foreach ($this->headers as $key => $value) {
+            $return[$key] = $value->getOptions();
+        }
+        return $return;
+    }
+
+    public function addHeader(Header\HeaderInterface $header)
+    {
+        $class = get_class($header);
+        $parts = explode('\\', $class);
+        $name = strtolower(array_shift($parts));
+        $this->headers[$name] = $header;
+        return $this;
     }
 
 }
