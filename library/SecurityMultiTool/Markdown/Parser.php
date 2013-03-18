@@ -84,4 +84,9 @@ class Parser implements Common\OptionsInterface
         return $this->sanitizer;
     }
 
+    public function getParser()
+    {
+        return $this->parser;
+    }
+
 }
