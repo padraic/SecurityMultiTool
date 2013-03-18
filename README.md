@@ -17,13 +17,14 @@ I'm more than happy to accept PRs for new features with the understanding that t
 Current Features
 ----------------
 
-The following features are available and tested as of 17 March 2013:
+The following features are available and tested as of 18 March 2013:
 
 1. HTML Output Escaping (SecurityMultiTool\Html\Escaper)
 2. HTML Sanitization (SecurityMultiTool\Html\Sanitizer)
 3. Random Number/Bytes Generator (SecurityMultiTool\Random\Generator)
 4. HTTP Strict-Transport-Security & X-CSRFToken Headers (SecurityMultiTool\Http\Header)
 5. HTTPS Detector (SecurityMultiTool\Http\HttpsDetector)
+6. Sanitized Markdown and BBCode Parsers (SecurityMultiTool\Markdown|BBcode\Parser)
 
 The following libraries are dependencies installed with SecurityMultiTool which you may use independently of SecurityMultiTool:
 
