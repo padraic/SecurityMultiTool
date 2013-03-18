@@ -25,6 +25,7 @@ The following features are available and tested as of 18 March 2013:
 4. HTTP Strict-Transport-Security & X-CSRFToken Headers (SecurityMultiTool\Http\Header)
 5. HTTPS Detector (SecurityMultiTool\Http\HttpsDetector)
 6. Sanitized Markdown and BBCode Parsers (SecurityMultiTool\Markdown|BBcode\Parser)
+7. Anti Timing-Attack String Comparison (SecurityMultiTool\String\FixedTimeComparison)
 
 The following libraries are dependencies installed with SecurityMultiTool which you may use independently of SecurityMultiTool:
 
