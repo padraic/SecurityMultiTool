@@ -16,7 +16,8 @@
         "ezyang/htmlpurifier": ">=4.5.0",
         "ircmaxell/random-lib": "dev-master@dev",
         "ircmaxell/security-lib": "dev-master@dev",
-        "dflydev/markdown": ">=1.0.2"
+        "dflydev/markdown": ">=1.0.2",
+        "mjohnson/decoda": ">=5.1.2"
     },
     "require-dev": {
         "mockery/mockery": "dev-master@dev"
