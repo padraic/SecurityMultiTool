@@ -7,6 +7,8 @@ class FixedTimeComparison
 
     public static function compare($string1, $string2)
     {
+        $string1 = (string) $string1;
+        $string2 = (string) $string2;
         if (strlen($string1) !== strlen($string2)) {
             return false;
         }
