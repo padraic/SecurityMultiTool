@@ -54,6 +54,11 @@ class Parser implements Common\OptionsInterface
         }
     }
 
+    public function getOptions()
+    {
+        return $this->sanitizer->getOptions();
+    }
+
     public function setOption($key, $value)
     {
         $this->sanitizer->setOption($key, $value);
@@ -67,6 +72,16 @@ class Parser implements Common\OptionsInterface
     public function getSanitizerConfig()
     {
         return $this->sanitizer->getConfig();
+    }
+
+    public function setSanitizer(Sanitizer $sanitizer)
+    {
+        $this->sanitizer = $sanitizer;
+    }
+
+    public function getSanitizer()
+    {
+        return $this->sanitizer;
     }
 
 }

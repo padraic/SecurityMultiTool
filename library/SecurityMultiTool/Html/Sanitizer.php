@@ -12,6 +12,8 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
 
     protected $config = null;
 
+    protected $filter = '';
+
     public function __construct($cachePath, array $options = null)
     {
         if ((!isset($cachePath) || !is_dir($cachePath) || !is_writable($cachePath))
@@ -42,6 +44,17 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
         $this->purifier = null;
     }
 
+    public function setFilterDefinition($filter)
+    {
+        $this->filter = $filter;
+        $this->setOption('HTML.Allowed', $this->filter);
+    }
+
+    public function getFilterDefinition()
+    {
+        return $this->filter;
+    }
+
     public function setOption($key, $value)
     {
         $this->reset();
@@ -51,6 +64,14 @@ class Sanitizer extends Common\AbstractOptions implements Common\OptionsInterfac
     public function getOption($key)
     {
         return $this->getConfig()->get($key);
+    }
+
+    public function getOptions()
+    {
+        throw new Exception\RuntimeException(
+            'Unfortunately, there\'s no way to retrieve all options from '
+            . 'HTMLPurifier_Config\'s property list object'
+        );
     }
 
     public function setConfig(\HTMLPurifier_Config $config)
