@@ -5,7 +5,7 @@ namespace SecurityMultiTool\Http;
 class HttpsDetector
 {
 
-    public static function isHttps()
+    public static function isHttpsRequest()
     {
         $https = null;
         if (isset($_SERVER['HTTPS'])) {

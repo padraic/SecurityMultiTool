@@ -37,29 +37,43 @@ class HttpsDetectorTest extends \PHPUnit_Framework_TestCase
     public function testDetectorWorksWithHttpsSetTo1()
     {
         $_SERVER['HTTPS'] = 1;
-        $this->assertTrue(HttpsDetector::isHttps());
+        $this->assertTrue(HttpsDetector::isHttpsRequest());
+        $_SERVER['HTTPS'] = 0;
+        $this->assertFalse(HttpsDetector::isHttpsRequest());
     }
 
     public function testDetectorWorksWithHttpsSetToOn()
     {
         $_SERVER['HTTPS'] = 'on';
-        $this->assertTrue(HttpsDetector::isHttps());
+        $this->assertTrue(HttpsDetector::isHttpsRequest());
         $_SERVER['HTTPS'] = 'ON';
-        $this->assertTrue(HttpsDetector::isHttps());
+        $this->assertTrue(HttpsDetector::isHttpsRequest());
+        $_SERVER['HTTPS'] = 'off';
+        $this->assertFalse(HttpsDetector::isHttpsRequest());
+        $_SERVER['HTTPS'] = 'OFF';
+        $this->assertFalse(HttpsDetector::isHttpsRequest());
     }
 
     public function testDetectorWorksHttpXForwardedProtoSetToHttps()
     {
         $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'https';
-        $this->assertTrue(HttpsDetector::isHttps());
+        $this->assertTrue(HttpsDetector::isHttpsRequest());
         $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'HTTPS';
-        $this->assertTrue(HttpsDetector::isHttps());
+        $this->assertTrue(HttpsDetector::isHttpsRequest());
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'http';
+        $this->assertFalse(HttpsDetector::isHttpsRequest());
+        $_SERVER['HTTP_X_FORWARDED_PROTO'] = 'HTTP';
+        $this->assertFalse(HttpsDetector::isHttpsRequest());
     }
 
     public function testDetectorWorksWithServerPortSetTo443()
     {
         $_SERVER['SERVER_PORT'] = 443;
         $this->assertTrue(HttpsDetector::isHttps());
+        $_SERVER['SERVER_PORT'] = 80;
+        $this->assertFalse(HttpsDetector::isHttps());
+        $_SERVER['SERVER_PORT'] = 8080;
+        $this->assertFalse(HttpsDetector::isHttps());
     }
 
 }
