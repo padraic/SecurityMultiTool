@@ -69,11 +69,11 @@ class HttpsDetectorTest extends \PHPUnit_Framework_TestCase
     public function testDetectorWorksWithServerPortSetTo443()
     {
         $_SERVER['SERVER_PORT'] = 443;
-        $this->assertTrue(HttpsDetector::isHttps());
+        $this->assertTrue(HttpsDetector::isHttpsRequest());
         $_SERVER['SERVER_PORT'] = 80;
-        $this->assertFalse(HttpsDetector::isHttps());
+        $this->assertFalse(HttpsDetector::isHttpsRequest());
         $_SERVER['SERVER_PORT'] = 8080;
-        $this->assertFalse(HttpsDetector::isHttps());
+        $this->assertFalse(HttpsDetector::isHttpsRequest());
     }
 
 }

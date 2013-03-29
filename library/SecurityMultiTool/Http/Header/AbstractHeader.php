@@ -11,7 +11,7 @@ abstract class AbstractHeader extends Common\AbstractOptions
 
     protected function isHttpsRequest()
     {
-        return HttpsDetector::isHttps();
+        return HttpsDetector::isHttpsRequest();
     }
 
 }

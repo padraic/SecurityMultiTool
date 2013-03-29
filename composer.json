@@ -18,7 +18,7 @@
         "ircmaxell/security-lib": "dev-master@dev",
         "dflydev/markdown": ">=1.0.2",
         "mjohnson/decoda": ">=5.1.2",
-        "zendframework/zend-uri": ">=2.1.4"
+        "zendframework/zend-uri": "2.1.3"
     },
     "require-dev": {
         "mockery/mockery": "dev-master@dev"

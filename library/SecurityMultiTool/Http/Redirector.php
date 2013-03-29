@@ -38,7 +38,7 @@ class Redirector
         }
         if (false === $valid) {
             throw new Exception\InvalidArgumentException(
-                "Given value was not a valid HTTP(S) URL: " . $url
+                "Given value was not a valid absolute HTTP(S) URL: " . $url
             );
         }
         /**
