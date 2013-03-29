@@ -63,7 +63,8 @@ class Redirector
         /**
          * Check if the URL host exists on a whitelist of allowed hosts
          */
-        if (!empty($this->getWhitelist()) && !$this->isWhitelisted($url)) {
+        $whitelist = $this->getWhitelist();
+        if (!empty($whitelist) && !$this->isWhitelisted($url)) {
             throw new Exception\InvalidArgumentException(
                 "Given value was not a whitelisted URL as expected: " . $url
             );
@@ -106,7 +107,7 @@ class Redirector
     {
         $host = HostDetector::getLocalHost($this->allowProxy);
         $urlHost = $url->getHost();
-        if (!empty($url->getPort())) {
+        if ($url->getPort()) {
             $urlHost .= ':' . $url->getPort();
         }
         if ($host !== $urlHost) {
