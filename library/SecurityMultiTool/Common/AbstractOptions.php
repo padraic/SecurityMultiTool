@@ -26,8 +26,6 @@ abstract class AbstractOptions
         return $this->options;
     }
 
-    public abstract function setOption($key, $value);
-
     public function getOption($key)
     {
         if (isset($this->options[$key])) {
