@@ -12,10 +12,10 @@ class FormDecorator
 
     protected $escaper = null;
 
-    public function __construct(Csrf\Provider $provider, $encoding = 'utf-8')
+    public function __construct( Provider $provider, $encoding = 'utf-8')
     {
         $this->provider = $provider;
-        $this->escaper = new Escaper($encoding);
+        $this->escaper  = new Escaper($encoding);
     }
 
     public function decorate($form)
@@ -39,7 +39,7 @@ class FormDecorator
             }
         } else {
             throw new Exception\RuntimeException(
-                'Unable to decorate as the given argument does not appear to '
+                'Unable to decorate as the given argument does not appear to ',
                 'contain valid HTML form markup'
             );
         }
