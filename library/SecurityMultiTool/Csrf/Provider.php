@@ -2,8 +2,9 @@
 
 namespace SecurityMultiTool\Csrf;
 
-use SecurityMultiTool\String\FixedTimeComparison;
-use SecurityMultiTool\Exception;
+use \SecurityMultiTool\String\FixedTimeComparison;
+use \SecurityMultiTool\Exception;
+use \SecurityMultiTool\Common;
 
 class Provider extends Common\AbstractOptions implements Common\OptionsInterface
 {
@@ -14,13 +15,13 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
 
     protected $options = array(
         'token_name_prefix' => 'CSRFToken',
-        'name' => '',
-        'timeout' => 3600
+        'name'              => '',
+        'timeout'           => 3600
     )
 
     public function __construct(array $options = null)
     {
-        parent:__construct($options);
+        parent::__construct($options);
         $this->generator = new Csrf\TokenGenerator;
     }
 
