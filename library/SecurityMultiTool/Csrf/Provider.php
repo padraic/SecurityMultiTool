@@ -22,7 +22,7 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
     public function __construct(array $options = null)
     {
         parent::__construct($options);
-        $this->generator = new Csrf\TokenGenerator;
+        $this->generator = new TokenGenerator;
     }
 
     public function getToken($refresh = false)
