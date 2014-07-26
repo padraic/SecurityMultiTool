@@ -88,8 +88,8 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
             $expire = time() + $this->getTimeout();
         }
         $_SESSION[$this->getTokenName()] = array(
-            'token' => $this->getToken(),
-            'expire' => $expire;
+            'token'  => $this->getToken(),
+            'expire' => $expire
         );
     }
 
