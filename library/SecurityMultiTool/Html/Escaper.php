@@ -96,7 +96,7 @@ class Escaper
             $encoding = (string) $encoding;
             if ($encoding === '') {
                 throw new Exception\InvalidArgumentException(
-                    get_called_class() . ' constructor parameter does not allow a blank value'
+                    get_class($this) . ' constructor parameter does not allow a blank value'
                 );
             }
 
