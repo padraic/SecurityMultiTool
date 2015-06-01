@@ -16,12 +16,12 @@
         "ezyang/htmlpurifier": ">=4.5.0",
         "ircmaxell/random-lib": "dev-master@dev",
         "ircmaxell/security-lib": "1.1.*@dev",
-        "dflydev/markdown": ">=1.0.2",
+        "michelf/php-markdown": ">=1.0.2",
         "mjohnson/decoda": ">=5.1.2",
         "zendframework/zend-uri": "2.2.*"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master@dev"
+        "mockery/mockery": "1.0.*@dev"
     },
     "autoload": {
         "psr-0": { "SecurityMultiTool": "library/" }
