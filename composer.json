@@ -1,5 +1,5 @@
 {
-    "name": "padraic/security-multitool",
+    "name": "siu/security-multitool",
     "description": "A multitool library offering access to recommended security related libraries, standardised implementations of security defences, and secure implementations of commonly performed tasks.",
     "keywords": ["library", "security", "escaping", "sanitisation", "sanitization", "csrf", "xss", "ssl", "tls", "PRNG", "RNG", "random", "htmlpurifier"],
     "homepage": "http://github.com/padraic/SecurityMultiTool",
