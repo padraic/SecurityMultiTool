@@ -51,6 +51,11 @@ class HashTiming implements RandomLib\Source
         return new Strength(Strength::VERYLOW);
     }
 
+    public static function isSupported()
+    {
+        return (function_exists('mt_rand') && function_exists('microtime') && function_exists('sha1'));
+    }
+
     public function generate($size)
     {
         $result = '';

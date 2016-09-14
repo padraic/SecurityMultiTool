@@ -54,7 +54,10 @@ class HeadersTest extends \PHPUnit_Framework_TestCase
         $h1->shouldReceive('send')->once()->with(false);
         $h2->shouldReceive('send')->once()->with(false);
         $headers = new Headers;
-        $headers->addHeader($h1)->addHeader($h2);
+        //$headers->addHeader($h1)->addHeader($h2);             Daisychaining won't work because the name is the same on both headers.
+        $headers->addHeader($h1);
+        $headers->send();
+        $headers->addHeader($h2);
         $headers->send();
     }
 

@@ -1,3 +1,6 @@
 vendor
-test.php
+*.iml
+.log.git
 composer.lock
+nbproject/*
+.idea
