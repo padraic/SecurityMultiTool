@@ -18,7 +18,7 @@
         "ircmaxell/security-lib": "1.1.*@dev",
         "michelf/php-markdown": ">=1.0.2",
         "mjohnson/decoda": ">=5.1.2",
-        "zendframework/zend-uri": "2.4.*"
+        "laminas/laminas-uri": "2.7.*"
     },
     "require-dev": {
         "mockery/mockery": "1.0.*@dev"
