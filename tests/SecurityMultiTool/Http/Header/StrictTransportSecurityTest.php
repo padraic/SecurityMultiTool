@@ -21,7 +21,7 @@
 
 use SecurityMultiTool\Http\Header\StrictTransportSecurity;
 
-class StrictTransportSecurityTest extends \PHPUnit_Framework_TestCase
+class StrictTransportSecurityTest extends PHPUnit\Framework\TestCase
 {
 
     public function testImplementsOptionsInterfaceAndAbstractClass()
@@ -56,7 +56,7 @@ class StrictTransportSecurityTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowsExceptionOnInvalidOptionName()
     {
-        $this->setExpectedException('SecurityMultiTool\Exception\InvalidArgumentException');
+        $this->expectException('SecurityMultiTool\Exception\InvalidArgumentException');
         $header = new StrictTransportSecurity(array('foo'=>'bar'));
     }
 

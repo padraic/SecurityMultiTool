@@ -21,9 +21,8 @@
 
 use SecurityMultiTool\Random\Generator;
 use SecurityMultiTool\Random\Source;
-use Mockery as M;
 
-class GeneratorTest extends \PHPUnit_Framework_TestCase
+class GeneratorTest extends PHPUnit\Framework\TestCase
 {
 
     public function setup()
@@ -105,7 +104,7 @@ class GeneratorTest extends \PHPUnit_Framework_TestCase
 
     public function testIntegerRangeFail()
     {
-        $this->setExpectedException(
+        $this->expectException(
             '\DomainException'
         );
         $rand = $this->rand->getInteger(100, 0);

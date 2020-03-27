@@ -21,7 +21,7 @@
 
 use SecurityMultiTool\Http\Redirector;
 
-class RedirectorTest extends \PHPUnit_Framework_TestCase
+class RedirectorTest extends PHPUnit\Framework\TestCase
 {
 
     protected $httpHost = null;

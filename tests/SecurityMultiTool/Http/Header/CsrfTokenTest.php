@@ -20,9 +20,8 @@
  */
 
 use SecurityMultiTool\Http\Header\CsrfToken;
-use Mockery as M;
 
-class CsrfTokenTest extends \PHPUnit_Framework_TestCase
+class CsrfTokenTest extends PHPUnit\Framework\TestCase
 {
 
     public function testImplementsOptionsInterfaceAndAbstractClass()
@@ -48,7 +47,7 @@ class CsrfTokenTest extends \PHPUnit_Framework_TestCase
 
     public function testThrowsExceptionOnInvalidOptionName()
     {
-        $this->setExpectedException('SecurityMultiTool\Exception\InvalidArgumentException');
+        $this->expectException('SecurityMultiTool\Exception\InvalidArgumentException');
         $header = new CsrfToken(array('foo'=>'bar'));
     }
 

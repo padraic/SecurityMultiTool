@@ -23,7 +23,7 @@ use SecurityMultiTool\Http\Headers;
 use SecurityMultiTool\Http\Header;
 use Mockery as M;
 
-class HeadersTest extends \PHPUnit_Framework_TestCase
+class HeadersTest extends PHPUnit\Framework\TestCase
 {
 
     public function testOptionSetting()
@@ -59,6 +59,7 @@ class HeadersTest extends \PHPUnit_Framework_TestCase
         $headers->send();
         $headers->addHeader($h2);
         $headers->send();
+		M::close();
     }
 
 }

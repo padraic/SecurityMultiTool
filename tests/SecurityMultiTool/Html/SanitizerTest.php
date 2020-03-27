@@ -22,7 +22,7 @@
 use SecurityMultiTool\Html\Sanitizer;
 use Mockery as M;
 
-class SanitizerTest extends \PHPUnit_Framework_TestCase
+class SanitizerTest extends PHPUnit\Framework\TestCase
 {
 
     protected $cache = '';
@@ -37,7 +37,7 @@ class SanitizerTest extends \PHPUnit_Framework_TestCase
 
     public function testSanitizerCreationThrowsExceptionIfCacheDirectoryNotExists()
     {
-        $this->setExpectedException('\SecurityMultiTool\Exception\RuntimeException');
+        $this->expectException('\SecurityMultiTool\Exception\RuntimeException');
         $sanitizer = new Sanitizer('/does/not/exist');
     }
 
@@ -97,6 +97,7 @@ class SanitizerTest extends \PHPUnit_Framework_TestCase
         $purifier->shouldReceive('purify')->once()->with('html', null);
         $this->sanitizer->setHtmlPurifier($purifier);
         $this->sanitizer->sanitize('html');
+		M::close();
     }
 
     public function testOptionsMapToHtmlPurifierConfigObject()
@@ -117,6 +118,7 @@ class SanitizerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('baz', $this->sanitizer->getOption('foo'));
         $this->assertEquals('baz1', $this->sanitizer->getOption('foo1'));
         $this->assertEquals('baz2', $this->sanitizer->getOption('foo2'));
+		M::close();
     }
 
 }

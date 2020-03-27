@@ -19,7 +19,7 @@
  * @license    http://github.com/padraic/SecurityMultiTool/blob/master/LICENSE New BSD License
  */
 
-class SecurityMultiTool_LoaderTest extends PHPUnit_Framework_TestCase
+class SecurityMultiTool_LoaderTest extends PHPUnit\Framework\TestCase
 {
 
     public function setUp()
