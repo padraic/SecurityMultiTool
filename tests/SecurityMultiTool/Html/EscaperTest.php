@@ -21,7 +21,7 @@
 
 use SecurityMultiTool\Html\Escaper;
 
-class EscaperTest extends \PHPUnit_Framework_TestCase
+class EscaperTest extends PHPUnit\Framework\TestCase
 {
 
     /**

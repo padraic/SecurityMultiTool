@@ -21,7 +21,7 @@
 
 use SecurityMultiTool\Http\HttpsDetector;
 
-class HttpsDetectorTest extends \PHPUnit_Framework_TestCase
+class HttpsDetectorTest extends PHPUnit\Framework\TestCase
 {
 
     public function setup()

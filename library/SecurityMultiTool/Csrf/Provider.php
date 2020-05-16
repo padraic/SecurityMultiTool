@@ -16,7 +16,7 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
         'token_name_prefix' => 'CSRFToken',
         'name' => '',
         'timeout' => 3600
-    )
+    );
 
     public function __construct(array $options = null)
     {
@@ -88,7 +88,7 @@ class Provider extends Common\AbstractOptions implements Common\OptionsInterface
         }
         $_SESSION[$this->getTokenName()] = array(
             'token' => $this->getToken(),
-            'expire' => $expire;
+            'expire' => $expire
         );
     }
 

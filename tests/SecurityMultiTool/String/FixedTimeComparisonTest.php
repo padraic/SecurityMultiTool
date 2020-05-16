@@ -22,7 +22,7 @@
 use SecurityMultiTool\String\FixedTimeComparison;
 use SecurityMultiTool\Random\Generator;
 
-class FixedTimeComparisonTest extends \PHPUnit_Framework_TestCase
+class FixedTimeComparisonTest extends PHPUnit\Framework\TestCase
 {
 
     public function testCompareShouldReturnTrueOnMatchingStrings()
@@ -76,8 +76,8 @@ class FixedTimeComparisonTest extends \PHPUnit_Framework_TestCase
          * factor of 100 (could use 512 but a 100 is enough to prove the fixed
          * time comparison is working given we're using completely random bytes)
          */
-        $this->assertTrue(($t3-$t2) > ($t2-$t1));
-        $this->assertTrue(($t3-$t2) > (($t2-$t1)*100));
+        $this->assertTrue(round($t3-$t2) > round($t2-$t1));
+        $this->assertTrue(round($t3-$t2) > round(($t2-$t1)*100));
     }
 
 }

@@ -2,7 +2,7 @@
 
 namespace SecurityMultiTool\Markdown;
 
-use dflydev\markdown\MarkdownParser;
+use Michelf\Markdown;
 use SecurityMultiTool\Html\Sanitizer;
 use SecurityMultiTool\Exception;
 use SecurityMultiTool\Common;
@@ -20,12 +20,12 @@ class Parser implements Common\OptionsInterface
     {
         $this->sanitizer = new Sanitizer($cachePath, $options);
         //$this->sanitizer->setOption('HTML.Allowed', $this->filter);
-        $this->parser = new MarkdownParser;
+        $this->parser = new Markdown;
     }
 
     public function parse($markdown, $filter = null)
     {
-        $unsanitized = $this->parser->transformMarkdown($markdown);
+        $unsanitized = $this->parser->transform($markdown);
         $sanitized = $this->sanitizer->sanitize($unsanitized, $filter);
         return $sanitized;
     }

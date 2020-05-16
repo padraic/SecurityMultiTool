@@ -22,7 +22,7 @@
 use SecurityMultiTool\Markdown\Parser;
 use Mockery as M;
 
-class ParserTest extends \PHPUnit_Framework_TestCase
+class ParserTest extends PHPUnit\Framework\TestCase
 {
 
     public $cache = '';
@@ -36,7 +36,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
 
     public function testParserCreationThrowsExceptionIfCacheDirectoryNotExists()
     {
-        $this->setExpectedException('\SecurityMultiTool\Exception\RuntimeException');
+        $this->expectException('\SecurityMultiTool\Exception\RuntimeException');
         $parser = new Parser('/does/not/exist');
     }
 
@@ -75,6 +75,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $sanitizer->shouldReceive('sanitize')->once()->with("<p>foo</p>\n", null);
         $this->parser->setSanitizer($sanitizer);
         $this->parser->parse('foo');
+		M::close();
     }
 
     public function testCanRestSanitizer()
@@ -83,6 +84,7 @@ class ParserTest extends \PHPUnit_Framework_TestCase
         $sanitizer->shouldReceive('reset')->once();
         $this->parser->setSanitizer($sanitizer);
         $this->parser->resetSanitizer();
+		M::close();
     }
 
 }

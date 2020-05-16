@@ -6,7 +6,7 @@ use SecurityMultiTool\Http\HttpsDetector;
 use SecurityMultiTool\Http\HostDetector;
 use SecurityMultiTool\Http\Header;
 use SecurityMultiTool\Exception;
-use Zend\Uri\Uri;
+use Laminas\Uri\Uri;
 
 class Redirector
 {

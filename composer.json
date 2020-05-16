@@ -1,5 +1,5 @@
 {
-    "name": "padraic/security-multitool",
+    "name": "siu/security-multitool",
     "description": "A multitool library offering access to recommended security related libraries, standardised implementations of security defences, and secure implementations of commonly performed tasks.",
     "keywords": ["library", "security", "escaping", "sanitisation", "sanitization", "csrf", "xss", "ssl", "tls", "PRNG", "RNG", "random", "htmlpurifier"],
     "homepage": "http://github.com/padraic/SecurityMultiTool",
@@ -14,14 +14,14 @@
     ],
     "require": {
         "ezyang/htmlpurifier": ">=4.5.0",
-        "ircmaxell/random-lib": "dev-master@dev",
-        "ircmaxell/security-lib": "dev-master@dev",
-        "dflydev/markdown": ">=1.0.2",
+        "paragonie/random-lib": "~2.0",
+        "ircmaxell/security-lib": "1.1.*@dev",
+        "michelf/php-markdown": ">=1.0.2",
         "mjohnson/decoda": ">=5.1.2",
-        "zendframework/zend-uri": "2.2.*"
+        "laminas/laminas-uri": "2.7.*"
     },
     "require-dev": {
-        "mockery/mockery": "dev-master@dev"
+        "mockery/mockery": "~1.3"
     },
     "autoload": {
         "psr-0": { "SecurityMultiTool": "library/" }
